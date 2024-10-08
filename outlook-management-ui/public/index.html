@@ -1,45 +1,13 @@
-import React, { useState } from 'react';
-
-const AccountForm = () => {
-  const [outlookAccount, setOutlookAccount] = useState('');
-  const [recoveryEmail, setRecoveryEmail] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('/api/add_account', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ outlookAccount, recoveryEmail }),
-    });
-    const result = await response.json();
-    console.log(result);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Outlook Account:</label>
-        <input
-          type="text"
-          value={outlookAccount}
-          onChange={(e) => setOutlookAccount(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Recovery Email:</label>
-        <input
-          type="email"
-          value={recoveryEmail}
-          onChange={(e) => setRecoveryEmail(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Add Account</button>
-    </form>
-  );
-};
-
-export default AccountForm;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Outlook Account Management Interface" />
+    <title>Outlook Account Management</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
