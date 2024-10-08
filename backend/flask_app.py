@@ -17,7 +17,7 @@ def create_app():
         
         try:
             # Here, you would normally save the account to a database or a file
-            return jsonify({"message": f"Account {outlook_account} added with recovery email {recovery_email}"})
+            return jsonify({"message": f"Account {outlook_account} added with recovery email {recoveryEmail}"})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     
