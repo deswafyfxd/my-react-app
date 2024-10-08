@@ -6,15 +6,25 @@ const AccountForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/api/add_account', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ outlookAccount, recoveryEmail }),
-    });
-    const result = await response.json();
-    console.log(result);
+    try {
+      const response = await fetch('/api/add_account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ outlookAccount, recoveryEmail }),
+      });
+      const result = await response.json();
+      console.log(result);
+      if (response.ok) {
+        alert(`Account ${outlookAccount} added successfully.`);
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error("Error adding account:", error);
+      alert("Error adding account. Please try again.");
+    }
   };
 
   return (
