@@ -93,7 +93,9 @@ def run_discord_bot():
 def start_discord_bot():
     Thread(target=run_discord_bot).start()
 
+# Create the Flask app instance
+app = create_app()
+
 if __name__ == "__main__":
     start_discord_bot()
-    app = create_app()
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
