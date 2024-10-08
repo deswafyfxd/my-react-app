@@ -1,14 +1,9 @@
-import sys
 import discord
 import requests
 import yaml
 import psutil
 import os
 from threading import Thread
-
-# Add the current directory to sys.path so that Python can find flask_app
-sys.path.append(os.path.dirname(__file__))
-
 from flask_app import create_app
 
 # Function to get accounts from GitHub
