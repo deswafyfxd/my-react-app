@@ -8,7 +8,7 @@ from flask_app import create_app
 
 # Function to get accounts from GitHub
 def fetch_accounts():
-    url = 'https://raw.githubusercontent.com/deswafyfxd/disc-data-strore/main/accounts.yml'
+    url = 'https://raw.githubusercontent.com/deswafyfxd/my-react-app/main/accounts.yml'
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
