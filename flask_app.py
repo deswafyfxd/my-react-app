@@ -17,13 +17,12 @@ def create_app():
         
         try:
             # Here, you would normally save the account to a database or a file
-            return jsonify({"message": f"Account {outlook_account} added with recovery email {recoveryEmail}"})
+            return jsonify({"message": f"Account {outlook_account} added with recovery email {recovery_email}"})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     
     return app
 
-# Ensure the Flask app instance is created properly
 if __name__ == "__main__":
     app = create_app()
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
