@@ -14,8 +14,9 @@ code {
 }
 
 video {
-  width: 100%;
+  width: 100%;  /* Ensures video takes full width of its container */
   height: auto;
+  max-height: 90vh;  /* Limits the height to 90% of the viewport height for better visibility */
 }
 
 /* CSS for truncating long names and showing full name on hover */
