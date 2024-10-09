@@ -23,7 +23,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
 
   return (
     <div className="video-container">
-      <video id="my-video" className="video-js vjs-default-skin" controls preload="auto" data-setup="{}">
+      <video id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
         {videoFormats.map((format, index) => (
           <source key={index} src={format.src} type={format.type} />
         ))}
