@@ -18,14 +18,14 @@ function App() {
   ];
 
   const videoFormats = [
-    { src: 'https://your-bucket.s3.amazonaws.com/video-720p.mp4', type: 'video/mp4', label: '720p' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video-1080p.mp4', type: 'video/mp4', label: '1080p' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video-4k.mp4', type: 'video/mp4', label: '4K' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.mkv', type: 'video/x-matroska' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.hevc', type: 'video/h265' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.wav', type: 'audio/wav' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.aac', type: 'audio/aac' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.m4a', type: 'audio/mp4' }
+    { src: 'path/to/your/video-720p.mp4', type: 'video/mp4', label: '720p' },
+    { src: 'path/to/your/video-1080p.mp4', type: 'video/mp4', label: '1080p' },
+    { src: 'path/to/your/video-4k.mp4', type: 'video/mp4', label: '4K' },
+    { src: 'path/to/your/video.mkv', type: 'video/x-matroska' },
+    { src: 'path/to/your/video.hevc', type: 'video/h265' },
+    { src: 'path/to/your/video.wav', type: 'audio/wav' },
+    { src: 'path/to/your/video.aac', type: 'audio/aac' },
+    { src: 'path/to/your/video.m4a', type: 'audio/mp4' }
   ];
 
   return (
@@ -38,7 +38,7 @@ function App() {
         <SyncForm />
         <ServeForm />
         <VideoPlayer 
-          src="https://your-bucket.s3.amazonaws.com/video.mkv" 
+          src="path/to/your/video.mkv" 
           subtitles={subtitles} 
           audioTracks={audioTracks}
           videoFormats={videoFormats} 
