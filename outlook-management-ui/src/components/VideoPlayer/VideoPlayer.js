@@ -8,7 +8,12 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
     const player = videojs('my-video', {
       controls: true,
       autoplay: false,
-      preload: 'auto'
+      preload: 'auto',
+      controlBar: {
+        volumePanel: {
+          inline: false // Ensure volume slider remains open
+        }
+      }
     });
 
     // Apply truncation and tooltips to track labels
