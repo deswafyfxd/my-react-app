@@ -13,7 +13,8 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
         volumePanel: {
           inline: false, // Volume slider opens directly
           volumeControl: {
-            vertical: true // Slider orientation
+            vertical: true, // Slider orientation
+            name: 'volumeControl'
           },
           muteToggle: false // Remove mute button
         }
