@@ -2,13 +2,15 @@
 ```markdown
 # Outlook Management UI
 
-This project provides a web interface to manage Outlook accounts and recovery emails, integrated with Rclone for cloud storage operations.
+This project provides a web interface to manage Outlook accounts and recovery emails, integrated with Rclone for cloud storage operations and Video.js for media streaming.
 
 ## Features
 
 - Add and manage Outlook accounts and recovery emails.
 - Configure, mount, sync, and serve cloud storage using Rclone.
-- Integrated with MongoDB for secure data storage.
+- Stream video and audio using Video.js, supporting multiple formats and resolutions up to 4K.
+- Dynamic labeling for audio tracks and subtitles, with truncation and tooltips for long names.
+- Responsive design for seamless playback on mobile devices, TVs, and desktops.
 
 ## Project Structure
 
@@ -16,12 +18,14 @@ This project provides a web interface to manage Outlook accounts and recovery em
 your-repo/
 ├── backend/
 │   ├── app.py
+│   ├── discord_bot.py
+│   ├── combined_app.py
 │   ├── flask_app.py
 │   ├── rclone_backend.py
 │   ├── requirements.txt
 │   ├── database.py
 │   ├── start.sh
-│   └── .env
+│   ├── .env
 └── outlook-management-ui/
     ├── public/
     │   ├── index.html
@@ -36,10 +40,15 @@ your-repo/
     │   │   │   ├── SyncForm.js
     │   │   │   ├── ServeForm.js
     │   │   │   ├── index.js
+    │   │   ├── VideoPlayer/
+    │   │   │   ├── VideoPlayer.js
+    │   │   │   ├── Subtitles.js
+    │   │   │   ├── AudioTracks.js
+    │   │   │   ├── Controls.js
+    │   │   │   ├── index.js
     │   ├── App.js
     │   ├── index.js
-    │   ├── index.css (optional)
-    │   ├── App.css (optional)
+    │   ├── index.css
     ├── package.json
     ├── .gitignore
     ├── README.md
@@ -47,48 +56,35 @@ your-repo/
 
 ## Setup and Deployment
 
-1. **Backend Service Setup:**
-   - **Root Directory:** Set to `backend`
-   - **Build Command:**
-     ```bash
-     chmod +x start.sh && ./start.sh
-     ```
-   - **Start Command:**
-     ```bash
-     python app.py
-     ```
-   - **Environment Variables:** `USE_DATABASE` and `MONGO_URI`
+### Backend Service
 
-2. **Front-End Service Setup:**
-   - **Root Directory:** Set to `outlook-management-ui`
-   - **Build Command:**
-     ```bash
-     NODE_OPTIONS=--openssl-legacy-provider npm install && npm run build
-     ```
-   - **Publish Directory:**
-     ```plaintext
-     build
-     ```
+1. **Root Directory**: `backend`
+2. **Build Command**:
+   ```bash
+   chmod +x start.sh
+   ```
+3. **Start Command**:
+   ```bash
+   ./start.sh
+   ```
 
-## Usage
+### Front-End Service
 
-### Rclone Configuration
+1. **Root Directory**: `outlook-management-ui`
+2. **Build Command**:
+   ```bash
+   npm install && npm install video.js && NODE_OPTIONS=--openssl-legacy-provider npm run build
+   ```
+3. **Publish Directory**:
+   ```plaintext
+   build
+   ```
 
-- **Configure:**
-  - Remote Name: Name for the remote configuration.
-  - Remote Type: Type of cloud storage (e.g., `drive`, `s3`).
-  - Config Params: Additional parameters needed for setup.
+### Usage
 
-- **Mount:**
-  - Remote: Remote name and path.
-  - Local: Local directory to mount the remote storage.
-
-- **Sync:**
-  - Source: Source path.
-  - Destination: Destination path.
-
-- **Serve:**
-  - Remote for Serve: Remote name and path.
+- **Configure Rclone**: Use the web interface to set up Rclone configurations.
+- **Manage Accounts**: Add and manage Outlook accounts and recovery emails.
+- **Stream Media**: Use Video.js to stream video and audio files, supporting multiple formats and resolutions.
 
 ### Running Locally
 
@@ -112,5 +108,3 @@ your-repo/
    npm install
    npm start
    ```
-
-This should give you a fully functional interface for managing Outlook accounts and Rclone operations. Ready to take it live?
