@@ -3,5 +3,8 @@
 # Install Rclone
 curl https://rclone.org/install.sh | sudo bash
 
-# Start the Flask app
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Flask app
 python app.py
