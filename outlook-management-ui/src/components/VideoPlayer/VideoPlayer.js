@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import './VolumeSlider'; // Import custom plugin
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   useEffect(() => {
-    // Initialize Video.js player
+    // Initialize Video.js player with custom plugin
     const player = videojs('my-video', {
       controls: true,
       autoplay: false,
       preload: 'auto',
-      controlBar: {
-        volumePanel: {
-          inline: false, // Ensure volume slider remains open
-          volumeControl: {
-            vertical: true, // Ensure vertical slider orientation
-            name: 'volumeControl'
-          }
-        }
+      plugins: {
+        volumeSliderPlugin: {} // Activate custom plugin
       }
     });
 
