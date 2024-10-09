@@ -11,9 +11,9 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto',
       controlBar: {
         volumePanel: {
-          inline: false, // Volume slider opens directly
+          inline: false, // Ensure volume slider remains open
           volumeControl: {
-            vertical: false, // Horizontal slider orientation
+            vertical: true, // Ensure vertical slider orientation
             name: 'volumeControl'
           },
           muteToggle: false // Remove mute button
