@@ -13,10 +13,18 @@ code {
   text-align: center;
 }
 
+.video-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
 video {
-  width: 100%;  /* Ensures video takes full width of its container */
+  width: 100%;
   height: auto;
-  max-height: 90vh;  /* Limits the height to 90% of the viewport height for better visibility */
+  max-height: 90vh;
 }
 
 /* CSS for truncating long names and showing full name on hover */
