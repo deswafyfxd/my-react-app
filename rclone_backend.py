@@ -1,7 +1,17 @@
+from flask import Flask, request, jsonify
 import subprocess
-from flask import Flask, jsonify, request
 
 app = Flask(__name__)
+
+@app.route('/api/rclone/configure', methods=['POST'])
+def configure_rclone():
+    remote_name = request.json.get('remote_name')
+    remote_type = request.json.get('remote_type')
+    config_params = request.json.get('config_params')
+
+    command = f"rclone config create {remote_name} {remote_type} {config_params}"
+    subprocess.run(command, shell=True)
+    return jsonify({"message": "Rclone configured successfully"}), 200
 
 @app.route('/api/rclone/mount', methods=['POST'])
 def mount():
