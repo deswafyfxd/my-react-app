@@ -1,3 +1,4 @@
+### `README.md`
 ```markdown
 # Outlook Management UI
 
@@ -8,7 +9,6 @@ This project provides a web interface to manage Outlook accounts and recovery em
 - Add and manage Outlook accounts and recovery emails.
 - Configure, mount, sync, and serve cloud storage using Rclone.
 - Integrated with MongoDB for secure data storage.
-
 
 ## Project Structure
 
@@ -44,7 +44,6 @@ your-repo/
     ├── .gitignore
     ├── README.md
 ```
-
 
 ## Setup and Deployment
 
@@ -113,3 +112,5 @@ your-repo/
    npm install
    npm start
    ```
+
+This should give you a fully functional interface for managing Outlook accounts and Rclone operations. Ready to take it live?
