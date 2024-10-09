@@ -18,11 +18,11 @@ code {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh; /* Increase the height to make it more prominent */
+  height: 90vh; /* Increase the height to make it more prominent */
 }
 
 video {
-  width: 90%;
+  width: 95%;
   height: auto;
   max-height: 100%; /* Ensure it scales properly */
 }
