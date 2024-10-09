@@ -1,8 +1,8 @@
 import os
 from flask import Flask, request, jsonify
-from dotenv import load_dotenv
 import yaml
 from database import add_account, get_account
+from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -40,7 +40,3 @@ def create_app():
                 return jsonify({"error": str(e)}), 500
     
     return app
-
-if __name__ == "__main__":
-    app = create_app()
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
