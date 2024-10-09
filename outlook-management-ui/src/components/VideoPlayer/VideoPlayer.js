@@ -12,9 +12,24 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto'
     });
 
-    // Gesture controls for skipping 10 seconds
+    // Gesture controls for volume and skipping
     const videoElement = document.getElementById('my-video');
     const hammer = new Hammer(videoElement);
+
+    // Swipe up to increase volume, swipe down to decrease volume
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    hammer.on('swipeup', () => {
+      let currentVolume = player.volume();
+      if (currentVolume < 1) {
+        player.volume(Math.min(currentVolume + 0.1, 1)); // Increase volume
+      }
+    });
+    hammer.on('swipedown', () => {
+      let currentVolume = player.volume();
+      if (currentVolume > 0) {
+        player.volume(Math.max(currentVolume - 0.1, 0)); // Decrease volume
+      }
+    });
 
     // Double-tap left to rewind, right to fast-forward
     hammer.on('doubletap', (ev) => {
