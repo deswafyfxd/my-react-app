@@ -1,18 +1,30 @@
 import React, { useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import './VolumeSlider'; // Import custom plugin
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   useEffect(() => {
-    // Initialize Video.js player with custom plugin
+    // Initialize Video.js player
     const player = videojs('my-video', {
       controls: true,
       autoplay: false,
       preload: 'auto',
-      plugins: {
-        volumeSliderPlugin: {} // Activate custom plugin
+      controlBar: {
+        volumePanel: {
+          inline: false, // Ensure volume slider remains open
+          volumeControl: {
+            vertical: true, // Ensure vertical slider orientation
+            name: 'volumeControl'
+          }
+        }
       }
+    });
+
+    // Ensure volume slider stays open for adjustment
+    const volumeButton = document.querySelector('.vjs-volume-menu-button');
+    volumeButton.addEventListener('click', () => {
+      const volumeSlider = document.querySelector('.vjs-volume-bar');
+      volumeSlider.style.display = 'flex';
     });
 
     // Apply truncation and tooltips to track labels
