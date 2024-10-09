@@ -1,17 +1,29 @@
 import React, { useEffect } from 'react';
+import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   useEffect(() => {
+    // Initialize Video.js player
+    const player = videojs('my-video', {
+      controls: true,
+      autoplay: false,
+      preload: 'auto'
+    });
+
     // Apply truncation and tooltips to track labels
     document.querySelectorAll('.track-label').forEach(label => {
       label.setAttribute('data-fullname', label.textContent);
     });
+
+    return () => {
+      player.dispose();
+    };
   }, []);
 
   return (
     <div className="video-container">
-      <video id="my-video" className="video-js" controls preload="auto" data-setup="{}">
+      <video id="my-video" className="video-js vjs-default-skin" controls preload="auto" width="100%" height="auto" data-setup="{}">
         {videoFormats.map((format, index) => (
           <source key={index} src={format.src} type={format.type} />
         ))}
