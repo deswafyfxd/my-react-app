@@ -1,3 +1,4 @@
+import os
 from discord_bot import start_discord_bot
 from combined_app import create_combined_app
 
