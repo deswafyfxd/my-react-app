@@ -11,7 +11,11 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto',
       controlBar: {
         volumePanel: {
-          inline: false // Ensure volume slider remains open
+          inline: false, // Volume slider opens directly
+          volumeControl: {
+            vertical: true // Slider orientation
+          },
+          muteToggle: false // Remove mute button
         }
       }
     });
