@@ -18,14 +18,9 @@ function App() {
   ];
 
   const videoFormats = [
-    { src: 'path/to/your/video-720p.mp4', type: 'video/mp4', label: '720p' },
-    { src: 'path/to/your/video-1080p.mp4', type: 'video/mp4', label: '1080p' },
-    { src: 'path/to/your/video-4k.mp4', type: 'video/mp4', label: '4K' },
-    { src: 'path/to/your/video.mkv', type: 'video/x-matroska' },
-    { src: 'path/to/your/video.hevc', type: 'video/h265' },
-    { src: 'path/to/your/video.wav', type: 'audio/wav' },
-    { src: 'path/to/your/video.aac', type: 'audio/aac' },
-    { src: 'path/to/your/video.m4a', type: 'audio/mp4' }
+    { src: 'https://your-bucket.s3.amazonaws.com/video-720p.mp4', type: 'video/mp4', label: '720p' },
+    { src: 'https://your-bucket.s3.amazonaws.com/video-1080p.mp4', type: 'video/mp4', label: '1080p' },
+    { src: 'https://your-bucket.s3.amazonaws.com/video-4k.mp4', type: 'video/mp4', label: '4K' }
   ];
 
   return (
@@ -37,13 +32,15 @@ function App() {
         <MountForm />
         <SyncForm />
         <ServeForm />
+      </header>
+      <footer>
         <VideoPlayer 
-          src="path/to/your/video.mkv" 
+          src="https://your-bucket.s3.amazonaws.com/video.mkv" 
           subtitles={subtitles} 
           audioTracks={audioTracks}
           videoFormats={videoFormats} 
         />
-      </header>
+      </footer>
     </div>
   );
 }
