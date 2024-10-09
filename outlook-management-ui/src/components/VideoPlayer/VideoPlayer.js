@@ -15,8 +15,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
           volumeControl: {
             vertical: true, // Ensure vertical slider orientation
             name: 'volumeControl'
-          },
-          muteToggle: false // Remove mute button
+          }
         }
       }
     });
