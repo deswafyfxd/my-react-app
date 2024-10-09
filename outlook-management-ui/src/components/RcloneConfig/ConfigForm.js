@@ -26,7 +26,7 @@ const ConfigForm = () => {
         <label>Remote Type:</label>
         <input type="text" value={remoteType} onChange={(e) => setRemoteType(e.target.value)} />
         <label>Config Params:</label>
-        <input type="text" value={configParams} onChange={(e) => setConfigParams(e.target.value)} />
+        <textarea value={configParams} onChange={(e) => setConfigParams(e.target.value)}></textarea>
         <button onClick={handleConfigure}>Configure</button>
       </div>
     </div>
