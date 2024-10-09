@@ -9,6 +9,7 @@ This project provides a web interface to manage Outlook accounts and recovery em
 - Configure, mount, sync, and serve cloud storage using Rclone.
 - Integrated with MongoDB for secure data storage.
 
+
 ## Project Structure
 
 ```
@@ -43,6 +44,7 @@ your-repo/
     ├── .gitignore
     ├── README.md
 ```
+
 
 ## Setup and Deployment
 
