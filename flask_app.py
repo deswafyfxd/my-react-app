@@ -1,7 +1,10 @@
 import os
 from flask import Flask, request, jsonify
+from dotenv import load_dotenv
 import yaml
 from database import add_account, get_account
+
+load_dotenv()  # Load environment variables from .env file
 
 def create_app():
     app = Flask(__name__)
