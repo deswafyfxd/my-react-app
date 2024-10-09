@@ -5,3 +5,4 @@ Flask
 gunicorn
 psutil
 pymongo
+python-dotenv
