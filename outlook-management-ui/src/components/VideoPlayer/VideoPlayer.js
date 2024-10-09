@@ -8,23 +8,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
     const player = videojs('my-video', {
       controls: true,
       autoplay: false,
-      preload: 'auto',
-      controlBar: {
-        volumePanel: {
-          inline: false, // Ensure volume slider remains open
-          volumeControl: {
-            vertical: true, // Ensure vertical slider orientation
-            name: 'volumeControl'
-          }
-        }
-      }
-    });
-
-    // Ensure volume slider stays open for adjustment
-    const volumeButton = document.querySelector('.vjs-volume-menu-button');
-    volumeButton.addEventListener('click', () => {
-      const volumeSlider = document.querySelector('.vjs-volume-bar');
-      volumeSlider.style.display = 'flex';
+      preload: 'auto'
     });
 
     // Apply truncation and tooltips to track labels
@@ -39,7 +23,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
 
   return (
     <div className="video-container">
-      <video id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
+      <video id="my-video" className="video-js vjs-default-skin" controls preload="auto" data-setup="{}">
         {videoFormats.map((format, index) => (
           <source key={index} src={format.src} type={format.type} />
         ))}
