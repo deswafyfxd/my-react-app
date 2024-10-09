@@ -32,7 +32,7 @@ def create_app():
                 accounts[outlook_account] = recovery_email
                 with open('accounts.yml', 'w') as file:
                     yaml.safe_dump(accounts, file)
-                return jsonify({"message": f"Account {outlook_account} added with recovery email {recoveryEmail}"})
+                return jsonify({"message": f"Account {outlook_account} added with recovery email {recovery_email}"})
             except Exception as e:
                 return jsonify({"error": str(e)}), 500
     
