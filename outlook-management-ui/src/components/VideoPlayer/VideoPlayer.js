@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import Hammer from 'hammerjs'; // For gesture detection
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   useEffect(() => {
@@ -11,6 +12,19 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto'
     });
 
+    // Gesture controls for skipping 10 seconds
+    const videoElement = document.getElementById('my-video');
+    const hammer = new Hammer(videoElement);
+
+    // Double-tap left to rewind, right to fast-forward
+    hammer.on('doubletap', (ev) => {
+      if (ev.center.x < window.innerWidth / 2) {
+        player.currentTime(player.currentTime() - 10);
+      } else {
+        player.currentTime(player.currentTime() + 10);
+      }
+    });
+
     // Apply truncation and tooltips to track labels
     document.querySelectorAll('.track-label').forEach(label => {
       label.setAttribute('data-fullname', label.textContent);
@@ -18,6 +32,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
 
     return () => {
       player.dispose();
+      hammer.destroy();
     };
   }, []);
 
