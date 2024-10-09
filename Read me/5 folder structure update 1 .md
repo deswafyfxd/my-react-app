@@ -5,6 +5,8 @@ Alright, let’s organize this for clarity and split the code into manageable ch
 your-repo/
 ├── backend/
 │   ├── app.py
+│   ├── discord_bot.py
+│   ├── combined_app.py
 │   ├── flask_app.py
 │   ├── rclone_backend.py
 │   ├── requirements.txt
@@ -32,5 +34,6 @@ your-repo/
     ├── package.json
     ├── .gitignore
     ├── README.md
+
 ```
 
