@@ -4,3 +4,4 @@ pyyaml
 Flask
 gunicorn
 psutil
+pymongo
