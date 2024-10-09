@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 
-const RcloneControls = () => {
+const RcloneConfig = () => {
+  const [remoteName, setRemoteName] = useState('');
+  const [remoteType, setRemoteType] = useState('');
+  const [configParams, setConfigParams] = useState('');
   const [remote, setRemote] = useState('');
   const [local, setLocal] = useState('');
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
+
+  const handleConfigure = async () => {
+    const response = await fetch('/api/rclone/configure', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ remote_name: remoteName, remote_type: remoteType, config_params: configParams }),
+    });
+    const result = await response.json();
+    alert(result.message);
+  };
 
   const handleMount = async () => {
     const response = await fetch('/api/rclone/mount', {
@@ -44,7 +59,16 @@ const RcloneControls = () => {
 
   return (
     <div>
-      <h3>Rclone Controls</h3>
+      <h3>Rclone Configuration</h3>
+      <div>
+        <label>Remote Name:</label>
+        <input type="text" value={remoteName} onChange={(e) => setRemoteName(e.target.value)} />
+        <label>Remote Type:</label>
+        <input type="text" value={remoteType} onChange={(e) => setRemoteType(e.target.value)} />
+        <label>Config Params:</label>
+        <input type="text" value={configParams} onChange={(e) => setConfigParams(e.target.value)} />
+        <button onClick={handleConfigure}>Configure</button>
+      </div>
       <div>
         <label>Remote:</label>
         <input type="text" value={remote} onChange={(e) => setRemote(e.target.value)} />
@@ -68,4 +92,4 @@ const RcloneControls = () => {
   );
 };
 
-export default RcloneControls;
+export default RcloneConfig;
