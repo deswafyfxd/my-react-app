@@ -7,7 +7,7 @@ const AccountForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://your-backend.onrender.com/api/add_account', {
+      const response = await fetch('/api/add_account', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
