@@ -12,22 +12,40 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto'
     });
 
-    // Gesture controls for volume and skipping
+    // Gesture controls for volume, brightness, and skipping
     const videoElement = document.getElementById('my-video');
     const hammer = new Hammer(videoElement);
 
-    // Swipe up to increase volume, swipe down to decrease volume
+    // Swipe Up/Down on Right Side for Volume Control
     hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-    hammer.on('swipeup', () => {
-      let currentVolume = player.volume();
-      if (currentVolume < 1) {
-        player.volume(Math.min(currentVolume + 0.1, 1)); // Increase volume
+    hammer.on('swipeup', (ev) => {
+      if (ev.center.x > window.innerWidth / 2) {
+        let currentVolume = player.volume();
+        if (currentVolume < 1) {
+          player.volume(Math.min(currentVolume + 0.1, 1)); // Increase volume
+        }
       }
     });
-    hammer.on('swipedown', () => {
-      let currentVolume = player.volume();
-      if (currentVolume > 0) {
-        player.volume(Math.max(currentVolume - 0.1, 0)); // Decrease volume
+
+    hammer.on('swipedown', (ev) => {
+      if (ev.center.x > window.innerWidth / 2) {
+        let currentVolume = player.volume();
+        if (currentVolume > 0) {
+          player.volume(Math.max(currentVolume - 0.1, 0)); // Decrease volume
+        }
+      }
+    });
+
+    // Swipe Up/Down on Left Side for Brightness Control
+    hammer.on('swipeup', (ev) => {
+      if (ev.center.x < window.innerWidth / 2) {
+        document.getElementById('my-video').style.filter = 'brightness(1.5)'; // Increase brightness
+      }
+    });
+
+    hammer.on('swipedown', (ev) => {
+      if (ev.center.x < window.innerWidth / 2) {
+        document.getElementById('my-video').style.filter = 'brightness(0.5)'; // Decrease brightness
       }
     });
 
