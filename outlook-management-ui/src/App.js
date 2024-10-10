@@ -1,7 +1,7 @@
 import React from 'react';
 import AccountForm from './components/AccountForm';
 import { ConfigForm, MountForm, SyncForm, ServeForm } from './components/RcloneConfig';
-import VideoPlayer from './components/VideoPlayer';
+import VideoPlayer from './components/VideoPlayer'; // Ensure this import is correct
 
 function App() {
   const subtitles = [
