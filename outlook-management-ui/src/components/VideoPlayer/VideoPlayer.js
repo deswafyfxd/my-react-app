@@ -12,6 +12,16 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       preload: 'auto'
     });
 
+    // Add audio tracks
+    audioTracks.forEach((track) => {
+      player.addRemoteTextTrack({
+        kind: 'captions',
+        src: track.src,
+        srclang: track.srclang,
+        label: track.label
+      }, false);
+    });
+
     // Gesture controls for volume and skipping
     const videoElement = document.getElementById('my-video');
     const hammer = new Hammer(videoElement);
