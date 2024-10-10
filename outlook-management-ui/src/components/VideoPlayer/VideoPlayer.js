@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import Hammer from 'hammerjs'; // For gesture detection
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   const videoRef = useRef(null);
+  const [isLocked, setIsLocked] = useState(false);
 
   useEffect(() => {
     // Initialize Video.js player
@@ -19,10 +20,12 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
 
     // Double-tap left to rewind, right to fast-forward
     hammer.on('doubletap', (ev) => {
-      if (ev.center.x < window.innerWidth / 2) {
-        player.currentTime(player.currentTime() - 10);
-      } else {
-        player.currentTime(player.currentTime() + 10);
+      if (!isLocked) {
+        if (ev.center.x < window.innerWidth / 2) {
+          player.currentTime(player.currentTime() - 10);
+        } else {
+          player.currentTime(player.currentTime() + 10);
+        }
       }
     });
 
@@ -35,7 +38,11 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       player.dispose();
       hammer.destroy();
     };
-  }, []);
+  }, [isLocked]);
+
+  const toggleLock = () => {
+    setIsLocked(!isLocked);
+  };
 
   return (
     <div className="video-container">
@@ -50,6 +57,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
           <track key={index} kind="captions" src={track.src} srclang={track.srclang} label={track.label} className="track-label" />
         ))}
       </video>
+      <button className="lock-button" onClick={toggleLock}>{isLocked ? 'Unlock' : 'Lock'}</button>
     </div>
   );
 };
