@@ -23,5 +23,6 @@
     "eject": "react-scripts eject"
   }
 },
+{
   "proxy": "https://my-react-app-s5un.onrender.com"
 }
