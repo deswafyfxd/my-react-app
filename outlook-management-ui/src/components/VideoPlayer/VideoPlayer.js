@@ -1,35 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import Hammer from 'hammerjs'; // For gesture detection
+import VolumeSlider from './VolumeSlider'; // Import VolumeSlider component
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
+  const videoRef = useRef(null);
+
   useEffect(() => {
     // Initialize Video.js player
-    const player = videojs('my-video', {
+    const player = videojs(videoRef.current, {
       controls: true,
       autoplay: false,
       preload: 'auto'
     });
 
-    // Gesture controls for volume and skipping
-    const videoElement = document.getElementById('my-video');
-    const hammer = new Hammer(videoElement);
-
-    // Swipe up to increase volume, swipe down to decrease volume
-    hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-    hammer.on('swipeup', () => {
-      let currentVolume = player.volume();
-      if (currentVolume < 1) {
-        player.volume(Math.min(currentVolume + 0.1, 1)); // Increase volume
-      }
-    });
-    hammer.on('swipedown', () => {
-      let currentVolume = player.volume();
-      if (currentVolume > 0) {
-        player.volume(Math.max(currentVolume - 0.1, 0)); // Decrease volume
-      }
-    });
+    // Gesture controls for skipping
+    const hammer = new Hammer(videoRef.current);
 
     // Double-tap left to rewind, right to fast-forward
     hammer.on('doubletap', (ev) => {
@@ -53,7 +40,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
 
   return (
     <div className="video-container">
-      <video id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
+      <video ref={videoRef} id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
         {videoFormats.map((format, index) => (
           <source key={index} src={format.src} type={format.type} />
         ))}
@@ -64,6 +51,7 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
           <track key={index} kind="captions" src={track.src} srclang={track.srclang} label={track.label} className="track-label" />
         ))}
       </video>
+      <VolumeSlider player={videojs.getPlayer('my-video')} />
     </div>
   );
 };
