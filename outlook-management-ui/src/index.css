@@ -28,6 +28,18 @@ video {
   max-height: 100%; /* Ensure it scales properly */
 }
 
+/* Lock Button */
+.lock-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 10;
+}
+
 /* CSS for truncating long names and showing full name on hover */
 .track-label {
   white-space: nowrap;
