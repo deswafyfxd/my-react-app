@@ -7,7 +7,6 @@ const VideoPlayer = ({ src, subtitles, audioTracks }) => {
     const player = new Plyr('#player');
 
     player.on('ready', () => {
-      // Initialize player with subtitle and audio tracks
       subtitles.forEach((sub) => {
         player.addTextTrack(sub);
       });
