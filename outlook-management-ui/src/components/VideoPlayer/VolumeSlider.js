@@ -1,17 +1,23 @@
-import videojs from 'video.js';
+import React from 'react';
+import 'video.js/dist/video-js.css';
 
-const Plugin = videojs.getPlugin('plugin');
+const VolumeSlider = ({ player }) => {
+  const handleVolumeChange = (event) => {
+    const newVolume = event.target.value;
+    player.volume(newVolume);
+  };
 
-class VolumeSliderPlugin extends Plugin {
-  constructor(player, options) {
-    super(player, options);
+  return (
+    <input
+      type="range"
+      className="volume-slider"
+      min="0"
+      max="1"
+      step="0.01"
+      onChange={handleVolumeChange}
+      orient="vertical"
+    />
+  );
+};
 
-    player.on('ready', () => {
-      // Ensure volume slider is vertical
-      const volumePanel = player.controlBar.volumePanel;
-      volumePanel.vertical(true);
-    });
-  }
-}
-
-videojs.registerPlugin('volumeSliderPlugin', VolumeSliderPlugin);
+export default VolumeSlider; // Ensure it's a default export
