@@ -31,4 +31,4 @@ const VideoPlayer = ({ src, subtitles, audioTracks }) => {
   );
 };
 
-export default VideoPlayer;
+export default VideoPlayer; // Ensure this line is here
