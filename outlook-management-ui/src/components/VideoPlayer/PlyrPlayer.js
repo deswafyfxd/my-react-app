@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import 'plyr/dist/plyr.css';
 import Plyr from 'plyr';
+import { addSubtitles } from './subtitles';
+import { addAudioTracks } from './AudioTracks';
 
 const PlyrPlayer = ({ src, subtitles, audioTracks }) => {
   useEffect(() => {
