@@ -33,4 +33,4 @@ const PlyrPlayer = ({ src, subtitles, audioTracks }) => {
   );
 };
 
-export { PlyrPlayer };
+export default PlyrPlayer;  // Ensure this is a default export
