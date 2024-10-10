@@ -1,36 +1,44 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import Hammer from 'hammerjs'; // For gesture detection
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
-  const videoRef = useRef(null);
-  const [isLocked, setIsLocked] = useState(false);
-
   useEffect(() => {
     // Initialize Video.js player
-    const player = videojs(videoRef.current, {
+    const player = videojs('my-video', {
       controls: true,
       autoplay: false,
       preload: 'auto'
     });
 
-    // Gesture controls for skipping
-    const hammer = new Hammer(videoRef.current);
+    // Gesture controls for volume and skipping
+    const videoElement = document.getElementById('my-video');
+    const hammer = new Hammer(videoElement);
 
-    // Double-tap left to rewind, right to fast-forward
-    hammer.on('doubletap', (ev) => {
-      if (!isLocked) {
-        if (ev.center.x < window.innerWidth / 2) {
-          player.currentTime(player.currentTime() - 10);
-        } else {
-          player.currentTime(player.currentTime() + 10);
-        }
+    // Swipe up to increase volume, swipe down to decrease volume
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    hammer.on('swipeup', () => {
+      let currentVolume = player.volume();
+      if (currentVolume < 1) {
+        player.volume(Math.min(currentVolume + 0.1, 1)); // Increase volume
+      }
+    });
+    hammer.on('swipedown', () => {
+      let currentVolume = player.volume();
+      if (currentVolume > 0) {
+        player.volume(Math.max(currentVolume - 0.1, 0)); // Decrease volume
       }
     });
 
-    // Disable controls if locked
-    player.controls(!isLocked);
+    // Double-tap left to rewind, right to fast-forward
+    hammer.on('doubletap', (ev) => {
+      if (ev.center.x < window.innerWidth / 2) {
+        player.currentTime(player.currentTime() - 10);
+      } else {
+        player.currentTime(player.currentTime() + 10);
+      }
+    });
 
     // Apply truncation and tooltips to track labels
     document.querySelectorAll('.track-label').forEach(label => {
@@ -41,15 +49,11 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       player.dispose();
       hammer.destroy();
     };
-  }, [isLocked]);
-
-  const toggleLock = () => {
-    setIsLocked(!isLocked);
-  };
+  }, []);
 
   return (
     <div className="video-container">
-      <video ref={videoRef} id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
+      <video id="my-video" className="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup="{}">
         {videoFormats.map((format, index) => (
           <source key={index} src={format.src} type={format.type} />
         ))}
@@ -60,7 +64,6 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
           <track key={index} kind="captions" src={track.src} srclang={track.srclang} label={track.label} className="track-label" />
         ))}
       </video>
-      <button className="lock-button" onClick={toggleLock}>{isLocked ? 'Unlock' : 'Lock'}</button>
     </div>
   );
 };
