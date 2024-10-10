@@ -29,6 +29,9 @@ const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
       }
     });
 
+    // Disable controls if locked
+    player.controls(!isLocked);
+
     // Apply truncation and tooltips to track labels
     document.querySelectorAll('.track-label').forEach(label => {
       label.setAttribute('data-fullname', label.textContent);
