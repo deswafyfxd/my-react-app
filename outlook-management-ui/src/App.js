@@ -17,7 +17,7 @@ function App() {
     { src: 'audio_custom.m4a', srclang: 'custom', label: 'Director’s Commentary' }
   ];
 
-  const videoSrc = 'https://test-videos.co.uk/vids/jellyfish/mkv/1080/Jellyfish_1080_10s_1MB.mkv';
+  const videoSrc = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
   return (
     <div className="App">
