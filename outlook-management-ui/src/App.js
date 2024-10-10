@@ -1,7 +1,7 @@
 import React from 'react';
 import AccountForm from './components/AccountForm';
 import { ConfigForm, MountForm, SyncForm, ServeForm } from './components/RcloneConfig';
-import { VideoPlayer } from './components/VideoPlayer';
+import VideoPlayer from './components/VideoPlayer';
 
 function App() {
   const subtitles = [
@@ -17,16 +17,7 @@ function App() {
     { src: 'audio_custom.m4a', srclang: 'custom', label: 'Director’s Commentary' }
   ];
 
-  const videoFormats = [
-    { src: 'https://your-bucket.s3.amazonaws.com/video-720p.mp4', type: 'video/mp4', label: '720p' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video-1080p.mp4', type: 'video/mp4', label: '1080p' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video-4k.mp4', type: 'video/mp4', label: '4K' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.mkv', type: 'video/x-matroska' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.hevc', type: 'video/h265' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.wav', type: 'audio/wav' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.aac', type: 'audio/aac' },
-    { src: 'https://your-bucket.s3.amazonaws.com/video.m4a', type: 'audio/mp4' }
-  ];
+  const videoSrc = 'https://tvkkdata.tvkishorkumardata.workers.dev/download.aspx?file=7anyWcPigjZ5%2BT8ATJNAS8%2BXg1HUHpjot%2FL5bxpuXRc8tKMeEJZz09fRyT1k7FOm&expiry=P2eXdknonPGn29dH9EomXg%3D%3D&mac=ccb3206c17d50a1c28a63d879567d86313b8f06d6218a7acb49f318f12bd7c1f';
 
   return (
     <div className="App">
@@ -38,10 +29,9 @@ function App() {
         <SyncForm />
         <ServeForm />
         <VideoPlayer 
-          src="https://your-bucket.s3.amazonaws.com/video.mkv" 
+          src={videoSrc} 
           subtitles={subtitles} 
           audioTracks={audioTracks}
-          videoFormats={videoFormats} 
         />
       </header>
     </div>
