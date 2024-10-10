@@ -17,7 +17,7 @@ function App() {
     { src: 'audio_custom.m4a', srclang: 'custom', label: 'Director’s Commentary' }
   ];
 
-  const videoSrc = 'https://tvkkdata.tvkishorkumardata.workers.dev/download.aspx?file=7anyWcPigjZ5%2BT8ATJNAS8%2BXg1HUHpjot%2FL5bxpuXRc8tKMeEJZz09fRyT1k7FOm&expiry=P2eXdknonPGn29dH9EomXg%3D%3D&mac=ccb3206c17d50a1c28a63d879567d86313b8f06d6218a7acb49f318f12bd7c1f';
+  const videoSrc = 'https://test-videos.co.uk/vids/jellyfish/mkv/1080/Jellyfish_1080_10s_1MB.mkv';
 
   return (
     <div className="App">
