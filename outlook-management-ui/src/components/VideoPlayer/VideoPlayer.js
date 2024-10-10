@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import Hammer from 'hammerjs'; // For gesture detection
-import VolumeSlider from './VolumeSlider'; // Import VolumeSlider component
+import VolumeSlider from './VolumeSlider'; // Correctly import VolumeSlider component
 
 const VideoPlayer = ({ src, subtitles, audioTracks, videoFormats }) => {
   const videoRef = useRef(null);
